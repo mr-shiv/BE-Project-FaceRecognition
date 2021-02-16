@@ -246,7 +246,7 @@ def view():
     test_append = str(request.form['folder_name'])
     session['test_append']=test_append
     teacher_name = str(session.get('user'))
-    excel_dir = APP_ROOT+"/excel/"+test_append+"/"+teacher_name+"/"
+    excel_dir = APP_ROOT1[0]+"/excel/"+test_append+"/"+teacher_name+"/"
     excel_date = request.form['fname']
     time = request.form['ftime']
     time = time[:2]
@@ -314,8 +314,8 @@ def calculate():
     test_append = str(request.form['final_class'])
     print(test_append)
     teacher_name = str(session.get('user'))
-    print(teacher_name)
-    excel_root = APP_ROOT + "/excel/" + test_append + "/" + teacher_name + "/"
+    print(test_append,teacher_name)
+    excel_root = APP_ROOT1[0] + "/excel/" + test_append + "/" + teacher_name + "/"
     print(excel_root)
     excel_names = os.listdir(excel_root)
     print(excel_names) 
@@ -378,6 +378,7 @@ def viewfinal(final):
     final_path = str(session.get('final'))
     df = pd.read_excel(final_path)
     df.index += 1
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>>>>",final)
     return render_template("files.html",msg=final,course=test_append,df=df)
 
 
